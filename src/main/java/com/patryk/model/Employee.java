@@ -4,14 +4,14 @@ import com.patryk.service.StringToFloatService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class User {
+public class Employee {
     private int id;
     private String name;
     private String surname;
     private String job;
     private String SalaryAsString;
 
-    public User(int id, String name, String surname, String job, String salaryAsString) {
+    public Employee(int id, String name, String surname, String job, String salaryAsString) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -19,7 +19,7 @@ public class User {
         SalaryAsString = salaryAsString;
     }
 
-    public User() {
+    public Employee() {
     }
 
     public void setId(int id) {
