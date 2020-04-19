@@ -1,23 +1,22 @@
 package com.patryk.service;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+import static java.lang.Float.parseFloat;
 
 @Service
 public class StringToFloatService {
 
     public float validateAndChangeStringToFloat(String floatAsString){
-        return validateFloatPattern(floatAsString) ? Float.parseFloat(floatAsString) : convertStringSalaryToFloat(floatAsString);
+        return validateFloatPattern(floatAsString) ? parseFloat(floatAsString) : convertStringSalaryToFloat(floatAsString);
     }
 
     private float convertStringSalaryToFloat(String salaryAsString){
         IntStream intStream = salaryAsString.codePoints();
-        return Float.parseFloat( intStream.map(x-> x == ',' ? x= '.' : x).collect(StringBuilder::new,
-                StringBuilder::appendCodePoint,
-                StringBuilder::append)
+        return parseFloat(intStream.map(x -> x == ',' ? x = '.' : x)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString());
     }
 

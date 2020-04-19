@@ -8,7 +8,7 @@ class StringToFloatServiceTests {
     private StringToFloatService stfService = new StringToFloatService();
     private final String wrongFloatPattern = "2,99";
     private final String goodFloatPattern = "2.99";
-    private final float expectedFloatValue = Float.parseFloat("2.99");
+    private final float expectedFloatValue = 2.99f;
 
     @Test
     @DisplayName("validate and change string to float method return tests")
@@ -18,4 +18,6 @@ class StringToFloatServiceTests {
                 () -> assertEquals(expectedFloatValue, stfService.validateAndChangeStringToFloat(wrongFloatPattern), " should validate negatively and change , to . and return proper float afterwards")
         );
     }
+
+    //todo negative minus float tests
 }

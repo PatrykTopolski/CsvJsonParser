@@ -1,8 +1,5 @@
 package com.patryk.model;
 
-import com.patryk.service.StringToFloatService;
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 public class Employee {
     private int id;

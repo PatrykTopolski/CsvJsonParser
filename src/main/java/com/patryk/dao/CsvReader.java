@@ -13,14 +13,22 @@ import java.util.List;
 @Repository
 public class CsvReader implements DataReader{
 
-    public  List<Employee> ReadData(String fileName) {
+    public  List<Employee> readData(String fileName) {
         try {
-            CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader().withColumnSeparator(';')
+            CsvSchema bootstrapSchema = CsvSchema
+                    .emptySchema()
+                    .withHeader()
+                    .withColumnSeparator(';')
                     .withoutQuoteChar();
+
             CsvMapper mapper = new CsvMapper();
             File file = new ClassPathResource(fileName).getFile();
-            MappingIterator<Employee> readValues =
-                    mapper.reader(Employee.class).with(bootstrapSchema).readValues(file);
+
+            MappingIterator<Employee> readValues = mapper
+                            .reader(Employee.class)
+                            .with(bootstrapSchema)
+                            .readValues(file);
+
             return readValues.readAll();
         } catch (Exception e) {
             e.printStackTrace();

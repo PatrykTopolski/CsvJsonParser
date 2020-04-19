@@ -12,7 +12,7 @@ import java.util.*;
 
 @Repository
 public class JsonReader implements DataReader {
-    public List<Employee> ReadData(String fileName) {
+    public List<Employee> readData(String fileName) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             File file = new ClassPathResource(fileName).getFile();
@@ -20,9 +20,10 @@ public class JsonReader implements DataReader {
             JsonNode nameNode = rootNode.path("employees");
             Iterator nodeIterator = nameNode.elements();
             List<Employee> employees = new ArrayList<>();
+
             nodeIterator.forEachRemaining(x -> {
                 try {
-                    employees.add(objectMapper.readValue(x.toString(), Employee.class));
+                    employees.add(parseObjectToEmployeeObject(objectMapper, x));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -33,5 +34,9 @@ public class JsonReader implements DataReader {
             e.printStackTrace();
             return Collections.emptyList();
         }
+    }
+
+    private Employee parseObjectToEmployeeObject(ObjectMapper objectMapper, Object x) throws IOException {
+        return objectMapper.readValue(x.toString(), Employee.class);
     }
 }
