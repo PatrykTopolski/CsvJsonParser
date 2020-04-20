@@ -36,8 +36,7 @@ public class Employee {
     }
 
     public void setSalary(String salary) {
-        salary = salary = salary.replace("\"", "");
-        SalaryAsString = salary.trim();
+        SalaryAsString = salary;
     }
 
     public int getId() {

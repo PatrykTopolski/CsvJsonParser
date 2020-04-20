@@ -29,10 +29,20 @@ public class CsvReader implements DataReader{
                             .with(bootstrapSchema)
                             .readValues(file);
 
-            return readValues.readAll();
+            return repairAcquiredString(readValues.readAll());
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
+    }
+
+    private List<Employee> repairAcquiredString(List<Employee> employees){
+         employees.forEach(x -> {
+             x.setJob(x.getJob().replace("\"", "").trim());
+             x.setName(x.getName().replace("\"", "").trim());
+             x.setSurname(x.getSurname().replace("\"", "").trim());
+             x.setSalary(x.getSalary().replace("\"", "").trim());
+         });
+        return employees;
     }
 }

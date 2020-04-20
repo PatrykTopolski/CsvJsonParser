@@ -11,13 +11,20 @@ class StringToFloatServiceTests {
     private final float expectedFloatValue = 2.99f;
 
     @Test
-    @DisplayName("validate and change string to float method return tests")
-    void testFloatReturn(){
-        assertAll(
-                () -> assertEquals( expectedFloatValue, stfService.validateAndChangeStringToFloat(goodFloatPattern), "should validate and leave value as it is and just change to float"),
-                () -> assertEquals(expectedFloatValue, stfService.validateAndChangeStringToFloat(wrongFloatPattern), " should validate negatively and change , to . and return proper float afterwards")
-        );
+    @DisplayName("validate good float pattern and return float")
+    void testFloatGoodPatternReturn(){
+        assertEquals( expectedFloatValue, stfService.validateAndChangeStringToFloat(goodFloatPattern),
+                "should validate and leave value as it is and just change to float");
     }
+
+    @Test
+    @DisplayName("validate wrong float patter and return float")
+    void testFloatWrongPattern(){
+        assertEquals(expectedFloatValue, stfService.validateAndChangeStringToFloat(wrongFloatPattern),
+                " should validate negatively and change , to . and return proper float afterwards");
+    }
+
+
 
     //todo negative minus float tests
 }
