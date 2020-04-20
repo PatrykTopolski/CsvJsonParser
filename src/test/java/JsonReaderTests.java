@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JsonReaderTests {
 
     @Test
-    @DisplayName("Test CsvReader on exDample csv file")
+    @DisplayName("Test CsvReader on example csv file")
     void TestCsvReader(){
         DataReader jsonReader = new JsonReader();
         assertEquals(getExpectedOutput().get(0).getName(), jsonReader.readData("test.json").get(0).getName().trim(), "functional Test for CsvReader");
